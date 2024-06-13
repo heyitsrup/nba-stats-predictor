@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import axios from 'axios';
+import "../app/globals.css";
 
 const PlayerForm: React.FC = () => {
   const [playerName, setPlayerName] = useState<string>('');
