@@ -1,14 +1,12 @@
+# views.py
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 import subprocess
 import json
-import logging
 
-logger = logging.getLogger(__name__)
-
-@csrf_exempt  # For demonstration purposes, disable CSRF protection (not recommended for production)
-@require_POST  # Ensure view only responds to POST requests
+@csrf_exempt
+@require_POST
 def process_player_data(request):
     try:
         data = json.loads(request.body)
@@ -24,16 +22,13 @@ def process_player_data(request):
         )
 
         if result.returncode == 0:
-            return JsonResponse({'success': True})
+            output = result.stdout.strip().splitlines()  # Example: process output if needed
+            return JsonResponse({'success': True, 'output': output})
         else:
-            logger.error('Subprocess failed with return code %d: %s', result.returncode, result.stderr)
-            return JsonResponse({'error': 'Failed to process player data'}, status=500)
+            error_message = result.stderr.strip().splitlines()  # Example: handle error messages
+            return JsonResponse({'error': 'Failed to process player data', 'details': error_message}, status=500)
 
     except json.JSONDecodeError:
-        logger.error('Invalid JSON received: %s', request.body)
         return JsonResponse({'error': 'Invalid JSON'}, status=400)
     except Exception as e:
-        logger.error('Error processing player data: %s', str(e))
         return JsonResponse({'error': str(e)}, status=500)
-
-    return JsonResponse({'error': 'Method not allowed'}, status=405)
