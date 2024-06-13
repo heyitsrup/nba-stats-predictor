@@ -21,19 +21,19 @@ const PlayerForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Enter player name:
+    <form onSubmit={handleSubmit} className='flex items-center space-x-3 mt-[-400px]'>
+      <label className='flex items-center space-x-2'>
+        <span className="whitespace-nowrap">Enter player name:</span>
         <input
           type="text"
           id="text-input"
-          className="mt-1 block w-full border border-gray-300 rounded-md py-2 px-4 focus:outline-none focus:border-blue-500"
+          className="mt-1 block w-full rounded-md py-2 px-4"
           value={playerName}
           onChange={(e) => setPlayerName(e.target.value)}
           required
         />
       </label>
-      <button type="submit" className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md">
+      <button type="submit" className="mt-2 px-4 py-2 bg-nba-blue text-white rounded-md">
         Submit
       </button>
     </form>

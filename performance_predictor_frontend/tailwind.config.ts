@@ -10,9 +10,13 @@ const config: Config = {
     './src/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    colors: {
-      'grey': '#9ca3af',
-    },
+    extend: {
+      colors: {
+        'nba-red': '#cc152e',
+        'nba-blue': '#24438b',
+        'nba-white': '#000000'
+      },
+  }
   },
   plugins: [],
 };
