@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 
 import PlayerForm from '../components/PlayerForm'
+import PlayerTable from '../components/PlayerTable'
 
 const Home: React.FC = () => {
   return (
@@ -21,7 +22,12 @@ const Home: React.FC = () => {
         />
         <p className="text-5xl">StatsPredictor</p>
       </div>
-      <PlayerForm />
+      <div className="w-full flex flex-col items-center mt-60">
+        <div className="w-full flex justify-center">
+          <PlayerForm />
+        </div>
+        <PlayerTable />
+      </div>
     </main>
   );
 };
