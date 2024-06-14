@@ -1,11 +1,13 @@
 'use client'
 
 import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import "../app/globals.css";
 
 const PlayerForm: React.FC = () => {
   const [playerName, setPlayerName] = useState<string>('');
+  const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -13,10 +15,9 @@ const PlayerForm: React.FC = () => {
     try {
       const response = await axios.post('http://127.0.0.1:8000/api/process-player-data/', { player_name: playerName });
       console.log(response.data);
-      // Handle success (optional)
+      router.push(`/player/${playerName}`);
     } catch (error) {
       console.error('Error:', error);
-      // Handle error (optional)
     }
   };
 

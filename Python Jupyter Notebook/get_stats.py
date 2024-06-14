@@ -4,8 +4,7 @@ from nba_api.stats.endpoints import leaguegamefinder, playercareerstats
 from pandas import DataFrame
 import os
 
-# player_name = "Luka Doncic"
-player_name = input('Enter player name:')
+player_name = "Luka Doncic"
 
 player = players.find_players_by_full_name(player_name)
 
@@ -18,9 +17,6 @@ else:
     print(f"Player {player_name} not found")
     exit()
 
-player_directory = player_name.replace(' ', '_')
-os.makedirs(player_directory, exist_ok=True)
-
 for season in seasons:
     game_finder = leaguegamefinder.LeagueGameFinder(player_id_nullable=player_id, season_nullable=season)
     desired_columns = ['TEAM_NAME', 'GAME_DATE', 'MATCHUP','WL', 'PTS', 'REB', 'AST', 'STL', 'BLK']
@@ -29,7 +25,7 @@ for season in seasons:
     games_dict = games.to_dict(orient='records')
 
     # Store data in JSON file
-    file_name = f"{player_directory}/{player_name.replace(' ', '_')}_{season.replace('-', '_')}_regular_season_games.json"
+    file_name = f"{player_name.replace(' ', '_')}_{season}_regular_season_games.json"
     with open(file_name, 'w') as json_file:
         json.dump(games_dict, json_file, indent=4)
 

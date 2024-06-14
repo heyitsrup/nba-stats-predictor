@@ -11,14 +11,14 @@ const Home: React.FC = () => {
         <Image 
           src='/nba.png' 
           alt='logo' 
-          width={75} // Provide appropriate width
-          height={75} // Provide appropriate height
+          width={75}
+          height={75}
         />
         <Image 
           src='/chart.png' 
           alt='logo' 
-          width={75} // Provide appropriate width
-          height={75} // Provide appropriate height
+          width={75}
+          height={75}
         />
         <p className="text-5xl">StatsPredictor</p>
       </div>
