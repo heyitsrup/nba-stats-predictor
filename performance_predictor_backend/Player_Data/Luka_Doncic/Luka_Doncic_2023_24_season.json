@@ -1,6 +1,17 @@
 [
     {
         "TEAM_NAME": "Dallas Mavericks",
+        "GAME_DATE": "2024-06-14",
+        "MATCHUP": "DAL vs. BOS",
+        "WL": "W",
+        "PTS": 29,
+        "REB": 5,
+        "AST": 5,
+        "STL": 3,
+        "BLK": 0
+    },
+    {
+        "TEAM_NAME": "Dallas Mavericks",
         "GAME_DATE": "2024-06-12",
         "MATCHUP": "DAL vs. BOS",
         "WL": "L",

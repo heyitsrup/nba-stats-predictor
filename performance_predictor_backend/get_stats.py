@@ -14,7 +14,7 @@ def get_player_stats(player_name):
         career_stats_df = career_stats.get_data_frames()[0]
         seasons = career_stats_df['SEASON_ID'].unique().tolist()
 
-        player_directory = player_name.replace(' ', '_')
+        player_directory = f"Player_Data/{player_name.replace(' ', '_')}"
         os.makedirs(player_directory, exist_ok=True)
 
         results = []
