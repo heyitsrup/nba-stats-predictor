@@ -24,7 +24,7 @@ const PlayerForm: React.FC = () => {
   return (
     <form onSubmit={handleSubmit} className='flex items-center space-x-3 mt-[-400px]'>
       <label className='flex items-center space-x-2'>
-        <span className="whitespace-nowrap">Enter player name:</span>
+        <span className="whitespace-nowrap text-white">Enter player name:</span>
         <input
           type="text"
           id="text-input"
@@ -34,7 +34,7 @@ const PlayerForm: React.FC = () => {
           required
         />
       </label>
-      <button type="submit" className="mt-2 px-4 py-2 bg-nba-blue text-white rounded-md">
+      <button type="submit" className="mt-2 px-4 py-2 bg-nba-blue text-white rounded-md hover:scale-110 transition">
         Submit
       </button>
     </form>

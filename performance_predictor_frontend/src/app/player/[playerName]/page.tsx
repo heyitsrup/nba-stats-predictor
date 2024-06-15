@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
+import Loading from '../../loading';
 
 const PlayerPage: React.FC = () => {
   const { playerName } = useParams();
