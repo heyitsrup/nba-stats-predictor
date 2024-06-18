@@ -34,7 +34,7 @@ const PlayerForm: React.FC = () => {
           required
         />
       </label>
-      <button type="submit" className="mt-2 px-4 py-2 bg-nba-blue text-white rounded-md hover:scale-110 transition">
+      <button type="submit" className="mt-2 px-4 py-2 bg-nba-red text-white rounded-md hover:scale-110 transition">
         Submit
       </button>
     </form>

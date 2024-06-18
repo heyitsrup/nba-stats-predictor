@@ -14,7 +14,7 @@ const PlayerTable: React.FC = () => {
                         alt='Nikola_Jokic' 
                         width={150}
                         height={150}
-                        className="rounded-full hover:scale-110 transition"
+                        className="rounded-full hover:scale-110 transition ml-4 mb-8"
                     />
                 </td>
                 <td>
@@ -23,7 +23,7 @@ const PlayerTable: React.FC = () => {
                         alt='Jimmy_Butler' 
                         width={150}
                         height={150}
-                        className="rounded-full hover:scale-110 transition"
+                        className="rounded-full hover:scale-110 transition ml-4 mb-8"
                     />
                 </td>
                 <td>
@@ -32,7 +32,7 @@ const PlayerTable: React.FC = () => {
                         alt='Luka_Doncic' 
                         width={150}
                         height={150}
-                        className="rounded-full hover:scale-110 transition"
+                        className="rounded-full hover:scale-110 transition ml-4 mb-8"
                     />
                 </td>
                 <td>
@@ -41,7 +41,7 @@ const PlayerTable: React.FC = () => {
                         alt='Anthony_Edwards' 
                         width={150}
                         height={150}
-                        className="rounded-full hover:scale-110 transition"
+                        className="rounded-full hover:scale-110 transition ml-4 mb-8"
                     />
                 </td>
                 <td>
@@ -50,18 +50,18 @@ const PlayerTable: React.FC = () => {
                         alt='Giannis_Antetokounmpo' 
                         width={150}
                         height={150}
-                        className="rounded-full hover:scale-110 transition"
+                        className="rounded-full hover:scale-110 transition ml-4 mb-8"
                     />
                 </td>
             </tr>
             <tr className='w-1/4'>
                 <td>
                     <Image 
-                        src='/PlayerTable/Lebron_James.jpeg' 
-                        alt='Lebron_James' 
+                        src='/PlayerTable/LeBron_James.jpeg' 
+                        alt='LeBron_James' 
                         width={150}
                         height={150}
-                        className="rounded-full hover:scale-110 transition"
+                        className="rounded-full hover:scale-110 transition ml-44"
                     />
                 </td>
                 <td>
@@ -70,7 +70,7 @@ const PlayerTable: React.FC = () => {
                         alt='Kevin_Durant' 
                         width={150}
                         height={150}
-                        className="rounded-full hover:scale-110 transition"
+                        className="rounded-full hover:scale-110 transition ml-44"
                     />
                 </td>
                 <td>
@@ -79,7 +79,7 @@ const PlayerTable: React.FC = () => {
                         alt='Stephen_Curry' 
                         width={150}
                         height={150}
-                        className="rounded-full hover:scale-110 transition"
+                        className="rounded-full hover:scale-110 transition ml-44"
                     />
                 </td>
                 <td>
@@ -88,7 +88,7 @@ const PlayerTable: React.FC = () => {
                         alt='Kawhi_Leonard' 
                         width={150}
                         height={150}
-                        className="rounded-full hover:scale-110 transition"
+                        className="rounded-full hover:scale-110 transition ml-44"
                     />
                 </td>
             </tr>

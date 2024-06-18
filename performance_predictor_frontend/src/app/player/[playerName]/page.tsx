@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Image from 'next/image';
-import Loading from '../../loading';
+import Link from 'next/link';
 
 const PlayerPage: React.FC = () => {
   const { playerName } = useParams();
@@ -29,18 +29,14 @@ const PlayerPage: React.FC = () => {
     }
   }, [playerName]);
 
-  if (prediction === null) {
-    return <div>Loading...</div>;
-  }
-
   const decodedPlayerName = decodeURIComponent(String(playerName));
   
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-700">
+    <main className="min-h-screen flex flex-col items-center justify-center bg-slate-700">
       <div className="w-auto m-auto rounded-2xl fixed top-5 p-3 z-50 flex items-center space-x-3">
         <Image 
           src='/PlayerTable/Luka_Doncic.jpg' 
-          alt='logo' 
+          alt='player_headshot' 
           width={150}
           height={150}
           className="rounded-full"
@@ -64,7 +60,16 @@ const PlayerPage: React.FC = () => {
           <td>BLK</td>
         </tr>
       </table>
-    </div>
+
+      <div className="mt-10">
+        <button type="button" className="text-white bg-nba-red rounded-lg px-5 py-2.5 me-4 mb-2 hover:scale-110 transition">
+          <Link href="/">
+            🏠 Go Home
+          </Link>
+        </button>
+        <button type="button" className="text-white bg-nba-red rounded-lg px-5 py-2.5 me-2 mb-2 hover:scale-110 transition">📊 Analytics</button>
+      </div>
+    </main>
   );
 };
 
