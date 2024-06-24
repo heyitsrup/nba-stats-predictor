@@ -2,9 +2,22 @@
 
 import React from 'react';
 import Image from 'next/image';
+import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import "../app/globals.css";
 
 const PlayerTable: React.FC = () => {
+    const router = useRouter();
+
+    const handleImageClick = async (playerName: string) => {
+        try {
+            const response = await axios.post('http://127.0.0.1:8000/api/process-player-data/', { player_name: playerName });
+            console.log(response.data);
+            router.push(`/player/${playerName}`);
+        } catch (error) {
+            console.error('Error:', error);
+        }
+    };
     return (
         <table className="w-screen table-fixed">
             <tr className='w-1/5'>
@@ -14,7 +27,8 @@ const PlayerTable: React.FC = () => {
                         alt='Nikola_Jokic' 
                         width={225}
                         height={225}
-                        className="rounded-full hover:scale-110 transition ml-4 mb-8"
+                        className="rounded-full hover:scale-110 transition cursor-pointer ml-4 mb-8"
+                        onClick={() => handleImageClick('Nikola Jokic')}
                     />
                 </td>
                 <td>
@@ -23,7 +37,8 @@ const PlayerTable: React.FC = () => {
                         alt='Jimmy_Butler' 
                         width={225}
                         height={225}
-                        className="rounded-full hover:scale-110 transition ml-4 mb-8"
+                        className="rounded-full hover:scale-110 transition cursor-pointer ml-4 mb-8"
+                        onClick={() => handleImageClick('Jimmy Butler')}
                     />
                 </td>
                 <td>
@@ -32,7 +47,8 @@ const PlayerTable: React.FC = () => {
                         alt='Luka_Doncic' 
                         width={225}
                         height={225}
-                        className="rounded-full hover:scale-110 transition ml-4 mb-8"
+                        className="rounded-full hover:scale-110 transition cursor-pointer ml-4 mb-8"
+                        onClick={() => handleImageClick('Luka Doncic')}
                     />
                 </td>
                 <td>
@@ -41,7 +57,8 @@ const PlayerTable: React.FC = () => {
                         alt='Anthony_Edwards' 
                         width={225}
                         height={225}
-                        className="rounded-full hover:scale-110 transition ml-4 mb-8"
+                        className="rounded-full hover:scale-110 transition cursor-pointer ml-4 mb-8"
+                        onClick={() => handleImageClick('Anthony Edwards')}
                     />
                 </td>
                 <td>
@@ -50,7 +67,8 @@ const PlayerTable: React.FC = () => {
                         alt='Giannis_Antetokounmpo' 
                         width={225}
                         height={225}
-                        className="rounded-full hover:scale-110 transition ml-4 mb-8"
+                        className="rounded-full hover:scale-110 transition cursor-pointer ml-4 mb-8"
+                        onClick={() => handleImageClick('Giannis Antetokounmpo')}
                     />
                 </td>
             </tr>
@@ -61,7 +79,8 @@ const PlayerTable: React.FC = () => {
                         alt='LeBron_James' 
                         width={225}
                         height={225}
-                        className="rounded-full hover:scale-110 transition ml-44"
+                        className="rounded-full hover:scale-110 transition cursor-pointer ml-44"
+                        onClick={() => handleImageClick('LeBron James')}
                     />
                 </td>
                 <td>
@@ -70,7 +89,8 @@ const PlayerTable: React.FC = () => {
                         alt='Kevin_Durant' 
                         width={225}
                         height={225}
-                        className="rounded-full hover:scale-110 transition ml-44"
+                        className="rounded-full hover:scale-110 transition cursor-pointer ml-44"
+                        onClick={() => handleImageClick('Kevin Durant')}
                     />
                 </td>
                 <td>
@@ -79,7 +99,8 @@ const PlayerTable: React.FC = () => {
                         alt='Stephen_Curry' 
                         width={225}
                         height={225}
-                        className="rounded-full hover:scale-110 transition ml-44"
+                        className="rounded-full hover:scale-110 transition cursor-pointer ml-44"
+                        onClick={() => handleImageClick('Stephen Curry')}
                     />
                 </td>
                 <td>
@@ -88,7 +109,8 @@ const PlayerTable: React.FC = () => {
                         alt='Kawhi_Leonard' 
                         width={225}
                         height={225}
-                        className="rounded-full hover:scale-110 transition ml-44"
+                        className="rounded-full hover:scale-110 transition cursor-pointer ml-44"
+                        onClick={() => handleImageClick('Kawhi Leonard')}
                     />
                 </td>
             </tr>
