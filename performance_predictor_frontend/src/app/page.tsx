@@ -29,6 +29,7 @@ const Home: React.FC = () => {
         <PlayerTable />
       </div>
     </main>
+
   );
 };
 
