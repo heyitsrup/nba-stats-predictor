@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import Image from 'next/image';
+import PlayerHeader from '../[playerName]/playerHeader'
 import Link from 'next/link';
 
 const PlayerPage: React.FC = () => {
@@ -28,21 +28,10 @@ const PlayerPage: React.FC = () => {
       fetchPrediction();
     }
   }, [playerName]);
-
-  const decodedPlayerName = decodeURIComponent(String(playerName));
   
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-slate-700">
-      <div className="w-auto m-auto rounded-2xl fixed top-5 p-3 z-50 flex items-center space-x-3">
-        <Image 
-          src='/PlayerTable/Luka_Doncic.jpg' 
-          alt='player_headshot' 
-          width={150}
-          height={150}
-          className="rounded-full"
-        />
-        <p className="text-5xl text-white">{decodedPlayerName}</p>
-      </div>
+      <PlayerHeader />
 
       <table className="w-screen table-fixed text-white">
         <tr className='text-9xl w-1/5 text-center'>

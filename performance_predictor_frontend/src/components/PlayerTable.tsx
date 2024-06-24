@@ -12,8 +12,8 @@ const PlayerTable: React.FC = () => {
                     <Image 
                         src='/PlayerTable/Nikola_Jokic.jpg' 
                         alt='Nikola_Jokic' 
-                        width={150}
-                        height={150}
+                        width={225}
+                        height={225}
                         className="rounded-full hover:scale-110 transition ml-4 mb-8"
                     />
                 </td>
@@ -21,8 +21,8 @@ const PlayerTable: React.FC = () => {
                     <Image 
                         src='/PlayerTable/Jimmy_Butler.jpg' 
                         alt='Jimmy_Butler' 
-                        width={150}
-                        height={150}
+                        width={225}
+                        height={225}
                         className="rounded-full hover:scale-110 transition ml-4 mb-8"
                     />
                 </td>
@@ -30,8 +30,8 @@ const PlayerTable: React.FC = () => {
                     <Image 
                         src='/PlayerTable/Luka_Doncic.jpg' 
                         alt='Luka_Doncic' 
-                        width={150}
-                        height={150}
+                        width={225}
+                        height={225}
                         className="rounded-full hover:scale-110 transition ml-4 mb-8"
                     />
                 </td>
@@ -39,8 +39,8 @@ const PlayerTable: React.FC = () => {
                     <Image 
                         src='/PlayerTable/Anthony_Edwards.jpg' 
                         alt='Anthony_Edwards' 
-                        width={150}
-                        height={150}
+                        width={225}
+                        height={225}
                         className="rounded-full hover:scale-110 transition ml-4 mb-8"
                     />
                 </td>
@@ -48,8 +48,8 @@ const PlayerTable: React.FC = () => {
                     <Image 
                         src='/PlayerTable/Giannis_Antetokounmpo.jpeg' 
                         alt='Giannis_Antetokounmpo' 
-                        width={150}
-                        height={150}
+                        width={225}
+                        height={225}
                         className="rounded-full hover:scale-110 transition ml-4 mb-8"
                     />
                 </td>
@@ -59,8 +59,8 @@ const PlayerTable: React.FC = () => {
                     <Image 
                         src='/PlayerTable/LeBron_James.jpeg' 
                         alt='LeBron_James' 
-                        width={150}
-                        height={150}
+                        width={225}
+                        height={225}
                         className="rounded-full hover:scale-110 transition ml-44"
                     />
                 </td>
@@ -68,8 +68,8 @@ const PlayerTable: React.FC = () => {
                     <Image 
                         src='/PlayerTable/Kevin_Durant.jpg' 
                         alt='Kevin_Durant' 
-                        width={150}
-                        height={150}
+                        width={225}
+                        height={225}
                         className="rounded-full hover:scale-110 transition ml-44"
                     />
                 </td>
@@ -77,8 +77,8 @@ const PlayerTable: React.FC = () => {
                     <Image 
                         src='/PlayerTable/Stephen_Curry.jpg' 
                         alt='Stephen_Curry' 
-                        width={150}
-                        height={150}
+                        width={225}
+                        height={225}
                         className="rounded-full hover:scale-110 transition ml-44"
                     />
                 </td>
@@ -86,8 +86,8 @@ const PlayerTable: React.FC = () => {
                     <Image 
                         src='/PlayerTable/Kawhi_Leonard.jpg' 
                         alt='Kawhi_Leonard' 
-                        width={150}
-                        height={150}
+                        width={225}
+                        height={225}
                         className="rounded-full hover:scale-110 transition ml-44"
                     />
                 </td>

@@ -22,7 +22,7 @@ const PlayerForm: React.FC = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='flex items-center space-x-3 mt-[-400px]'>
+    <form onSubmit={handleSubmit} className='flex items-center space-x-3 mt-[-300px]'>
       <label className='flex items-center space-x-2'>
         <span className="whitespace-nowrap text-white">Enter player name:</span>
         <input

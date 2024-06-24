@@ -22,7 +22,7 @@ const Home: React.FC = () => {
         />
         <p className="text-5xl text-white">StatsPredictor</p>
       </div>
-      <div className="w-full flex flex-col items-center mt-60">
+      <div className="w-full flex flex-col items-center mt-80">
         <div className="flex justify-center">
           <PlayerForm />
         </div>

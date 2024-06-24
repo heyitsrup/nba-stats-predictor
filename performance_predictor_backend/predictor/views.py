@@ -3,6 +3,7 @@ import os
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from nba_api.stats.static import players
 import subprocess
 import json
 
@@ -115,6 +116,19 @@ def predict_score(request):
         response = {'prediction': prediction.tolist()}
         return JsonResponse(response)
     
+    except json.JSONDecodeError:
+        return JsonResponse({'error': 'Invalid JSON'}, status=400)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
+    
+def get_player_id(request):
+    try:
+        player_name = (request.GET.get('playerName'))
+        player = players.find_players_by_full_name(player_name)
+        player_id = player[0]['id']
+        response = {'playerId': player_id}
+        return JsonResponse(response)
+
     except json.JSONDecodeError:
         return JsonResponse({'error': 'Invalid JSON'}, status=400)
     except Exception as e:
