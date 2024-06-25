@@ -1,11 +1,10 @@
 'use client'
 
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import PlayerHeader from '../[playerName]/playerHeader'
 import Navbar from '../../../components/Navbar'
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 
 const PlayerPage: React.FC = () => {
   const router = useRouter();
