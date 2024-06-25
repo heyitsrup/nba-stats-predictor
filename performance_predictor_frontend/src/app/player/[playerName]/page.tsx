@@ -3,12 +3,20 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import PlayerHeader from '../[playerName]/playerHeader'
+import Navbar from '../../../components/Navbar'
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 const PlayerPage: React.FC = () => {
+  const router = useRouter();
+
   const { playerName } = useParams();
 
   const [prediction, setPrediction] = useState<number[]>([]);
+
+  const handleAnalyticsClick = () => {
+    router.push(`/player/${playerName}/analytics`);
+  };
 
   useEffect(() => {
     const fetchPrediction = async () => {
@@ -31,9 +39,10 @@ const PlayerPage: React.FC = () => {
   
   return (
     <main className="min-h-screen flex flex-col items-center justify-center bg-slate-700">
+      <Navbar />
       <PlayerHeader />
 
-      <table className="w-screen table-fixed text-white">
+      <table className="w-screen table-fixed text-white mt-32">
         <tr className='text-9xl w-1/5 text-center'>
           <td>{prediction[0]}</td>
           <td>{prediction[1]}</td>
@@ -56,7 +65,7 @@ const PlayerPage: React.FC = () => {
             🏠 Go Home
           </Link>
         </button>
-        <button type="button" className="text-white bg-nba-red rounded-lg px-5 py-2.5 me-2 mb-2 hover:scale-110 transition">📊 Analytics</button>
+        <button type="button" className="text-white bg-nba-red rounded-lg px-5 py-2.5 me-2 mb-2 hover:scale-110 transition" onClick={handleAnalyticsClick}>📊 Analytics</button>
       </div>
     </main>
   );

@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('process-player-data/', views.process_player_data, name='process_player_data'),
     path('predict/', views.predict_score, name='predict_score'),
-    path('get-player-id/', views.get_player_id, name='get_player_id')
+    path('get-player-id/', views.get_player_id, name='get_player_id'),
+    path('analytics/', views.analytics, name='analytics')
     # Add other URLs as needed
 ]

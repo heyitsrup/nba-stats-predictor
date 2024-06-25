@@ -133,3 +133,57 @@ def get_player_id(request):
         return JsonResponse({'error': 'Invalid JSON'}, status=400)
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
+    
+def analytics(request):
+    try:
+        playerName = (request.GET.get('playerName')).replace(' ', '_')
+        directory = r'C:\Users\singh\Documents\Programming\NBA Player Performance Prediction\performance_predictor_backend\Player_Data'
+        
+        json_file_paths = get_json_file_paths(directory, playerName)
+        
+        if not json_file_paths:
+            return JsonResponse({'error': f'No JSON files found for {playerName}'}, status=404)
+        
+        with open(json_file_paths[-1], 'r') as f:
+            data = json.load(f)
+
+        actual_values = []
+        predicted_values = []
+
+        # Load the trained LSTM model
+        model = LSTMModel(5, 128, 5).to(device)
+        state_dict = torch.load(r'C:\Users\singh\Documents\Programming\NBA Player Performance Prediction\performance_predictor_backend\Trained_Model.pth')
+        model.load_state_dict(state_dict)
+        model.eval()
+
+        for game in data:
+            actual_metrics = [
+                game['PTS'],
+                game['REB'],
+                game['AST'],
+                game['STL'],
+                game['BLK']
+            ]
+
+            input_data = torch.tensor(actual_metrics, dtype=torch.float32).unsqueeze(0).unsqueeze(0).to(device)
+
+            with torch.no_grad():
+                outputs = model(input_data)
+                predictions = outputs.cpu().numpy()
+
+            prediction = np.maximum(np.round(predictions.flatten()), 0)
+
+            actual_values.append(actual_metrics)
+            predicted_values.append(prediction.tolist())
+
+        response = {
+            'actual_values': actual_values,
+            'predicted_values': predicted_values
+        }
+
+        return JsonResponse(response)
+    
+    except json.JSONDecodeError:
+        return JsonResponse({'error': 'Invalid JSON'}, status=400)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)
