@@ -1,0 +1,9 @@
+{
+    "explorer.excludeGitIgnore": true,
+    "files.exclude": {
+        "*.hintrc": true,
+        "**/*.json": true,
+        "**/*.mjs": true,
+        "**/*.ts": true
+    }
+}
