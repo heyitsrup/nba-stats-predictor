@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import Loading from '../components/Loading';
+import Loading from './Loading';
 import "../app/globals.css";
 
 const PlayerForm: React.FC = () => {

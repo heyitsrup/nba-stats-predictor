@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import axios from 'axios';
 import { useRouter } from 'next/navigation';
-import Loading from '../components/Loading';
+import Loading from './Loading';
 import "../app/globals.css";
 
 const PlayerTable: React.FC = () => {

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
-import PlayerHeader from '../[playerName]/playerHeader'
+import PlayerHeader from './playerHeader'
 import Navbar from '../../../components/Navbar'
 import Link from 'next/link';
 
