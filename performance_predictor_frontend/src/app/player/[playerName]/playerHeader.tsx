@@ -13,7 +13,7 @@ const PlayerHeader: React.FC = () => {
     useEffect(() => {
         const fetchPlayerId = async () => {
           try {
-            const res = await fetch(`http://127.0.0.1:8000/api/get-player-id?playerName=${playerName}`);
+            const res = await fetch(`http://127.0.0.1:5000/api/get-player-id?playerName=${playerName}`);
             if (!res.ok) {
               throw new Error('Failed to fetch player ID');
             }

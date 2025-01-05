@@ -16,7 +16,7 @@ const PlayerForm: React.FC = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post('http://127.0.0.1:8000/api/process-player-data/', { player_name: playerName });
+      const response = await axios.post('http://127.0.0.1:5000/api/process-player-data/', { player_name: playerName });
       router.push(`/player/${playerName}`);
     } catch (error) {
       console.error('Error:', error);

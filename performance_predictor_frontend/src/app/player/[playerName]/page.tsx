@@ -20,7 +20,7 @@ const PlayerPage: React.FC = () => {
   useEffect(() => {
     const fetchPrediction = async () => {
       try {
-        const res = await fetch(`http://127.0.0.1:8000/api/predict?playerName=${playerName}`);
+        const res = await fetch(`http://127.0.0.1:5000/api/predict?playerName=${playerName}`);
         if (!res.ok) {
           throw new Error('Failed to fetch prediction');
         }
