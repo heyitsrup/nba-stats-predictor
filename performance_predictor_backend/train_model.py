@@ -73,7 +73,7 @@ def get_json_file_paths(directory):
 def train_model(player_name, num_epochs=40, batch_size=2):
     # Set parameters
     player_data_directory = os.path.join(
-        r'C:\Users\singh\Documents\Programming\NBA Player Performance Prediction\performance_predictor_backend\Player_Data', 
+        'Player_Data', 
         player_name.replace(' ', '_')
     )
     
@@ -112,7 +112,7 @@ def train_model(player_name, num_epochs=40, batch_size=2):
         print(f'Validation Loss: {val_loss:.3f}')
     
     # Save trained model
-    torch.save(model.state_dict(), r'C:\Users\singh\Documents\Programming\NBA Player Performance Prediction\performance_predictor_backend\Trained_Model.pth')
+    torch.save(model.state_dict(), 'Trained_Model.pth')
 
 def test_model(loader, model, criterion):
     model.eval()

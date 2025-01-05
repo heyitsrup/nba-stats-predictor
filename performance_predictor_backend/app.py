@@ -1,5 +1,5 @@
-import os, subprocess, torch
-from flask import Flask, json, request, jsonify
+import os, subprocess, torch, json
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 import numpy as np
 import torch.nn as nn
@@ -16,12 +16,15 @@ def process_player_data():
         player_name = data.get('player_name')
         if not player_name:
             return jsonify({'error': 'Player name is required'}), 400
+        
+        stats_command = [
+            'python', 
+            'get_stats.py',
+            '--player_name', 
+            player_name
+        ]
 
-        result = subprocess.run(
-            ['python', 'get_stats.py', '--player_name', player_name],
-            capture_output=True,
-            text=True
-        )
+        result = subprocess.run(stats_command, capture_output=True, text=True)
 
         if result.returncode == 0:
             output = result.stdout.strip().splitlines()
@@ -29,7 +32,7 @@ def process_player_data():
             # Run another subprocess command
             train_command = [
                 'python', 
-                os.path.join(r'C:\Users\singh\Documents\Programming\NBA Player Performance Prediction\performance_predictor_backend', 'train_model.py'), 
+                'train_model.py', 
                 player_name
             ]
 
@@ -105,7 +108,7 @@ def predict_score():
             return jsonify({'error': 'Player name is required'}), 400
 
         # Path to the directory containing player data
-        directory = r'C:\Users\singh\Documents\Programming\NBA Player Performance Prediction\performance_predictor_backend\Player_Data'
+        directory = 'Player_Data'
         
         # Get JSON file paths for the player
         json_file_paths = get_json_file_paths(directory, player_name)
@@ -133,7 +136,7 @@ def predict_score():
 
         # Load the trained model
         model = LSTMModel(5, 128, 5).to(device)
-        state_dict = torch.load(r'C:\Users\singh\Documents\Programming\NBA Player Performance Prediction\performance_predictor_backend\Trained_Model.pth')
+        state_dict = torch.load('Trained_Model.pth')
         model.load_state_dict(state_dict)
         model.eval()
 
