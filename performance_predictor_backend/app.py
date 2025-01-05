@@ -136,7 +136,7 @@ def predict_score():
 
         # Load the trained model
         model = LSTMModel(5, 128, 5).to(device)
-        state_dict = torch.load('Trained_Model.pth')
+        state_dict = torch.load('Trained_Model.pth', weights_only=False)
         model.load_state_dict(state_dict)
         model.eval()
 
@@ -158,6 +158,66 @@ def predict_score():
         response = {'prediction': prediction.tolist()}
         return jsonify(response)
 
+    except json.JSONDecodeError:
+        return jsonify({'error': 'Invalid JSON'}), 400
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/analytics', methods=['GET'])
+def analytics():
+    try:
+        player_name = request.args.get('playerName', '').replace(' ', '_')
+        if not player_name:
+            return jsonify({'error': 'Player name is required'}), 400
+        
+        # Directory where player data is stored
+        directory = 'Player_Data'
+        
+        # Get JSON file paths for the player
+        json_file_paths = get_json_file_paths(directory, player_name)
+        if not json_file_paths:
+            return jsonify({'error': f'No JSON files found for {player_name}'}), 404
+        
+        # Load the latest JSON file
+        with open(json_file_paths[-1], 'r') as f:
+            data = json.load(f)
+
+        actual_values = []
+        predicted_values = []
+
+        # Load the trained LSTM model
+        model = LSTMModel(5, 128, 5).to(device)
+        state_dict = torch.load('Trained_Model.pth')
+        model.load_state_dict(state_dict)
+        model.eval()
+
+        for game in data:
+            actual_metrics = [
+                game['PTS'],
+                game['REB'],
+                game['AST'],
+                game['STL'],
+                game['BLK']
+            ]
+
+            input_data = torch.tensor(actual_metrics, dtype=torch.float32).unsqueeze(0).unsqueeze(0).to(device)
+
+            with torch.no_grad():
+                outputs = model(input_data)
+                predictions = outputs.cpu().numpy()
+
+            prediction = np.maximum(np.round(predictions.flatten()), 0)
+
+            actual_values.append(actual_metrics)
+            predicted_values.append(prediction.tolist())
+
+        response = {
+            'actual_values': actual_values,
+            'predicted_values': predicted_values
+        }
+
+        return jsonify(response)
+    
     except json.JSONDecodeError:
         return jsonify({'error': 'Invalid JSON'}), 400
     except Exception as e:
