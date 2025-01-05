@@ -31,9 +31,9 @@ const PlayerHeader: React.FC = () => {
 
     return (
         <div className="w-auto m-auto rounded-2xl fixed top-20 p-3 z-50 flex items-center space-x-3">
-          // TODO: Add a default image for players without headshots
+        {/* TODO: Add a default image for players without headshots */}
         <Image 
-          src={`https://ak-static.cms.nba.com/wp-content/uploads/headshots/nba/latest/260x190/${playerId}.png`}
+          src={`https://cdn.nba.com/headshots/nba/latest/1040x760/${playerId}.png`}
           alt='player_headshot' 
           width={250}
           height={250}

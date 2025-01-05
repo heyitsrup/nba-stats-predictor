@@ -1,4 +1,4 @@
-import os, subprocess, torch, json
+import os, subprocess, torch, json, nba_api
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import numpy as np
@@ -56,13 +56,13 @@ def process_player_data():
 @app.route('/api/get-player-id/', methods=['GET'])
 def get_player_id():
     try:
-        # Extract 'playerName' from query parameters
         player_name = request.args.get('playerName')
+        print(f"Player name received: {player_name}")
+        
         if not player_name:
             return jsonify({'error': 'Player name is required'}), 400
 
-        # Find player ID using NBA API
-        player = player.find_players_by_full_name(player_name)
+        player = nba_api.stats.static.players.find_players_by_full_name(player_name)
         if not player:
             return jsonify({'error': 'Player not found'}), 404
 
