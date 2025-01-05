@@ -2,8 +2,7 @@
     "explorer.excludeGitIgnore": true,
     "files.exclude": {
         "*.hintrc": true,
-        "**/*.json": true,
-        "**/*.mjs": true,
-        "**/*.ts": true
+        "**/*.config.ts": true,
+        "**/*.mjs": true
     }
 }
