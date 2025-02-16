@@ -1,3 +1,12 @@
-Python script for collecting historical data.
-PyTorch Model capable of predicting NBA Player Statistics. 
-Deployed as web application using Flask + Next.js
+# Athlete Stats Predictor
+
+| A PyTorch model that can predict next-game metrics for NBA players
+
+## Installation
+Run 'npm run dev' in Frontend/ to start NextJS frontend
+
+```npm run dev```
+
+Run 'flask run' in Backend/ to start Flask backend
+
+```flask run```
