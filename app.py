@@ -8,7 +8,8 @@ from trainModel import trainModel
 from JSONToNumpy import JSONToNumpy
 from predictNextGame import predictNextGame
 from os.path import exists, join, isdir
-from os import makedirs
+from testMetrics import testMetrics
+from plotPredictions import plotPredictions
 
 title("🏀 NBA Player Performance Predictor")
 
@@ -33,18 +34,25 @@ def handlePlayerFetch(playerName):
     device_used = device("cuda" if cuda.is_available() else "cpu")
     model = LSTMModel().to(device=device_used)
 
+    JSONFilePaths = getJSONFilePaths(playerName=playerName)
+
     if exists(model_path):
+        # ✅ Load the model
         model.load_state_dict(load(model_path, map_location=device_used))
         success(f"Loaded existing model for {playerName}")
-    
+
+        # ✅ Load data only for test metrics & prediction
+        trainLoaders, valLoader, testLoader = loadPlayerData(JSONFilePaths=JSONFilePaths)
+
     else:
-        if not isdir(data_dir):
+        # 🚨 Only fetch data if none exists
+        if not isdir(data_dir) or len(JSONFilePaths) == 0:
+            warning("No historical data found for training.")
             fetchPlayerData(playerName=playerName)
             success(f"Fetched new data for {playerName}")
-        else:
-            success(f"Using existing data for {playerName}")
-        
-        JSONFilePaths = getJSONFilePaths(playerName=playerName)
+            JSONFilePaths = getJSONFilePaths(playerName=playerName)
+
+        # ✅ Now load data and train
         trainLoaders, valLoader, testLoader = loadPlayerData(JSONFilePaths=JSONFilePaths)
 
         trainModel(
@@ -58,11 +66,9 @@ def handlePlayerFetch(playerName):
         )
         success(f"Model trained and saved for {playerName}")
 
-    if not isdir(data_dir):
-        warning("No historical data found for prediction.")
-        return
+    # ✅ Evaluate and display predictions
+    mse, mae, r2, trueLabelsNp, predictionsNp = testMetrics(model=model, device=device_used, loader=testLoader)
 
-    JSONFilePaths = getJSONFilePaths(playerName=playerName)
     historicalData = JSONToNumpy(JSONFilePaths[-1])
     predictedMetrics = predictNextGame(model, historicalData, device_used)
 
@@ -70,6 +76,12 @@ def handlePlayerFetch(playerName):
     cols = columns(5)
     for col, value, label in zip(cols, predictedMetrics, labels):
         col.metric(label=label, value=f"{value:.1f}")
+    
+    write(f"**Mean Squared Error (MSE):** {mse:.4f}")
+    write(f"**Mean Absolute Error (MAE):** {mae:.4f}")
+    write(f"**R-squared (R2):** {r2:.4f}")
+
+    plotPredictions(trueLabelsNp=trueLabelsNp, predictionsNp=predictionsNp)
 
 if button("Fetch Player Data"):
     if playerName.strip() == "":
