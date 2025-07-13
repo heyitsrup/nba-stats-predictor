@@ -34,5 +34,5 @@ def trainModel(model, trainLoaders, valLoader, device, playerName, NUM_EPOCHS = 
         lossVal = testModel(model=model, criterion=criterion, loader=valLoader, device=device)
         print(f'Validation Loss: {lossVal:.3f}')
 
-    save(model.state_dict(), f"models/{ playerName }_trained_lstm.pth")
-    print(f"✅ Model saved as { playerName }_trained_lstm.pth")
+    save(model.state_dict(), f"models/{ playerName.replace(' ', '_') }_trained_lstm.pth")
+    print(f"✅ Model saved as { playerName.replace(' ', '_') }_trained_lstm.pth")

@@ -27,7 +27,7 @@ if button("Fetch Player Data"):
 
         trainModel(model=model, trainLoaders=trainLoaders, valLoader=valLoader, device=device, playerName=playerName)
         
-        trainedModel = model.load_state_dict(load("models/trained_lstm.pth", map_location=device))
+        trainedModel = model.load_state_dict(load(f"models/{ playerName.replace(' ', '_') }_trained_lstm.pth", map_location=device))
         historicalData = JSONToNumpy(JSONFilePaths[-1])
         predictedMetrics = predictNextGame(model, historicalData, device)
         write(f"Predicted Metrics for Next Game based on Historical Data: { predictedMetrics } ")
