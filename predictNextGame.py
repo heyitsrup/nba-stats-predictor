@@ -1,4 +1,4 @@
-from numpy import mean, maximum, round
+from numpy import round as npRound, mean, maximum
 from torch import no_grad, tensor, float32
 
 def predictNextGame(model, historicalData, device):
@@ -12,4 +12,4 @@ def predictNextGame(model, historicalData, device):
         outputs = model(input_data)
         predictions = outputs.cpu().numpy()
     
-    return maximum(round(predictions.flatten()), 0)
+    return maximum(npRound(predictions.flatten()), 0).tolist()

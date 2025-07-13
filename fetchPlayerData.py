@@ -1,6 +1,7 @@
 from json import dump
 from nba_api.stats.static import players
 from nba_api.stats.endpoints import leaguegamefinder, playercareerstats
+from os import makedirs, path
 
 def fetchPlayerData(playerName):
     player = players.find_players_by_full_name(playerName)
@@ -21,7 +22,8 @@ def fetchPlayerData(playerName):
 
         gamesDict = games.to_dict(orient='records')
 
-        fileName = f"data/raw/{playerName} - {season}.json"
+        fileName = f"data/raw/{ playerName }/{ season }.json"
+        makedirs(path.dirname(fileName), exist_ok=True)
         with open(fileName, 'w') as JSONFile:
             dump(gamesDict, JSONFile, indent=4)
 

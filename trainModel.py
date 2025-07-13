@@ -1,5 +1,4 @@
 from torch import no_grad, nn, optim, save
-from tqdm import tqdm
 
 def testModel(model, criterion, loader, device):
     model.eval()
@@ -13,16 +12,16 @@ def testModel(model, criterion, loader, device):
             totalLoss += loss.item()
     return totalLoss / len(loader)
 
-def trainModel(model, trainLoaders, valLoader, device, playerName, NUM_EPOCHS = 40, lr = 0.001):
+def trainModel(model, trainLoaders, valLoader, device, playerName, NUM_EPOCHS = 40, lr = 0.001, log_fn=None, progress_fn=None):
     criterion = nn.MSELoss()
     optimizer = optim.Adam(model.parameters(), lr=lr, betas=(0.9, 0.95), weight_decay=0)
 
     for epoch in range(NUM_EPOCHS):
         model.train()
-        print(f'==> Epoch { epoch + 1 }')
+        total_loss = 0
         
         for loader in trainLoaders:
-            for inputs, targets in tqdm(loader):
+            for inputs, targets in loader:
                 inputs, targets = inputs.to(device), targets.to(device)
                 inputs = inputs.unsqueeze(1)
                 optimizer.zero_grad()
@@ -30,9 +29,14 @@ def trainModel(model, trainLoaders, valLoader, device, playerName, NUM_EPOCHS = 
                 loss = criterion(outputs, targets)
                 loss.backward()
                 optimizer.step()
+                total_loss += loss.item()
         
         lossVal = testModel(model=model, criterion=criterion, loader=valLoader, device=device)
-        print(f'Validation Loss: {lossVal:.3f}')
+        lossMessage = f"==> Epoch { epoch + 1 } \n Validation Loss: {lossVal:.3f}"
 
-    save(model.state_dict(), f"models/{ playerName.replace(' ', '_') }_trained_lstm.pth")
-    print(f"✅ Model saved as { playerName.replace(' ', '_') }_trained_lstm.pth")
+        if log_fn:
+            log_fn(lossMessage)
+        if progress_fn:
+            progress_fn((epoch + 1) / NUM_EPOCHS)
+
+    save(model.state_dict(), f"models/{ playerName }.pth")
