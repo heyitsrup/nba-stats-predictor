@@ -77,9 +77,9 @@ def handlePlayerFetch(playerName):
     for col, value, label in zip(cols, predictedMetrics, labels):
         col.metric(label=label, value=f"{value:.1f}")
     
-    write(f"**Mean Squared Error (MSE):** {mse:.4f}")
-    write(f"**Mean Absolute Error (MAE):** {mae:.4f}")
-    write(f"**R-squared (R2):** {r2:.4f}")
+    write(f"**Mean Squared Error (MSE):** {mse:.2f}")
+    write(f"**Mean Absolute Error (MAE):** {mae:.2f}")
+    write(f"**R-squared (R²):** {r2 * 100:.2f}%")
 
     plotPredictions(trueLabelsNp=trueLabelsNp, predictionsNp=predictionsNp)
 
