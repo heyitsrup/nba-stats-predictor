@@ -11,7 +11,7 @@ from os.path import exists, join, isdir
 from testMetrics import testMetrics
 from plotPredictions import plotPredictions
 
-title("🏀 NBA Player Performance Predictor")
+title("🏀 NBA Athlete Performance Prediction ML Model")
 
 playerName = text_input("Enter NBA Player Name")
 
