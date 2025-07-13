@@ -21,9 +21,8 @@ def fetchPlayerData(playerName):
 
         gamesDict = games.to_dict(orient='records')
 
-        # Store data in JSON file
-        fileName = f"data/raw/{playerName}/{season}.json"
+        fileName = f"data/raw/{playerName} - {season}.json"
         with open(fileName, 'w') as JSONFile:
             dump(gamesDict, JSONFile, indent=4)
 
-        print(f"Game data stored in {fileName}")
+        # print(f"Game data stored in {fileName}")

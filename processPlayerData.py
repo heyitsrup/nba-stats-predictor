@@ -14,7 +14,7 @@ def customTransform(sample):
     
     return inputData, target
 
-def getJSONFilePaths(directory):
+def getJSONFilePaths(directory="./data/raw"):
     JSONFilePaths = []
     for root, dir, files in walk(directory):
         for file in files:

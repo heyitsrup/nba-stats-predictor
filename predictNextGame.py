@@ -1,14 +1,7 @@
 from numpy import mean, maximum, round
-from torch import no_grad, tensor, float32, load, device, cuda
-from defineModel import LSTMModel
-from JSONToNumpy import JSONToNumpy
-from processPlayerData import getJSONFilePaths
+from torch import no_grad, tensor, float32
 
-device = device("cuda" if cuda.is_available() else f"cpu")
-model = LSTMModel().to(device)
-model.load_state_dict(load("models/trained_lstm.pth", map_location=device))
-
-def predictNextGame(model, historicalData):
+def predictNextGame(model, historicalData, device):
     model.eval()
     
     avg_metrics = mean(historicalData, axis=0)
@@ -20,8 +13,3 @@ def predictNextGame(model, historicalData):
         predictions = outputs.cpu().numpy()
     
     return maximum(round(predictions.flatten()), 0)
-
-JSONFilePaths = getJSONFilePaths("./data/raw")
-historicalData = JSONToNumpy(JSONFilePaths[-1])
-predictedMetrics = predictNextGame(model, historicalData)
-print(f"Predicted Metrics for Next Game based on Historical Data: { predictedMetrics } ")
