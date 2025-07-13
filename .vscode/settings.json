@@ -1,8 +1,0 @@
-{
-    "explorer.excludeGitIgnore": true,
-    "files.exclude": {
-        "*.hintrc": true,
-        "**/*.config.ts": true,
-        "**/*.mjs": true
-    }
-}
